@@ -7,7 +7,7 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	"github.com/gliderlabs/logspout/router"
+	"github.com/phedoreanu/logspout/router"
 )
 
 var Version string
@@ -28,7 +28,7 @@ func main() {
 
 	fmt.Printf("# logspout %s by gliderlabs\n", Version)
 	fmt.Printf("# adapters: %s\n", strings.Join(router.AdapterFactories.Names(), " "))
-	fmt.Printf("# options : ")
+	fmt.Print("# options : ")
 	if getopt("DEBUG", "") != "" {
 		fmt.Printf("debug:%s ", getopt("DEBUG", ""))
 	}

@@ -1,6 +1,6 @@
 package main
 
 import (
-	_ "github.com/gliderlabs/logspout/adapters/syslog"
-	_ "github.com/gliderlabs/logspout/transports/tcp"
+	_ "github.com/phedoreanu/logspout/adapters/syslog"
+	_ "github.com/phedoreanu/logspout/transports/tcp"
 )

@@ -1,4 +1,4 @@
-NAME=logspout
+NAME=phedoreanu/logspout
 VERSION=$(shell cat VERSION)
 
 dev:
@@ -7,7 +7,7 @@ dev:
 	@docker run --rm \
 		-e DEBUG=true \
 		-v /var/run/docker.sock:/var/run/docker.sock \
-		-v $(PWD):/go/src/github.com/gliderlabs/logspout \
+		-v $(PWD):/go/src/github.com/phedoreanu/logspout \
 		-p 8000:80 \
 		-e ROUTE_URIS=$(ROUTE) \
 		$(NAME):dev
@@ -15,7 +15,7 @@ dev:
 build:
 	mkdir -p build
 	docker build -t $(NAME):$(VERSION) .
-	docker save $(NAME):$(VERSION) | gzip -9 > build/$(NAME)_$(VERSION).tgz
+	#docker save $(NAME):$(VERSION) | gzip -9 > build/$(NAME)_$(VERSION).tgz
 
 release:
 	rm -rf release && mkdir release

@@ -1,10 +1,10 @@
 # logspout
 
-[![CircleCI](https://img.shields.io/circleci/project/gliderlabs/logspout/release.svg)](https://circleci.com/gh/gliderlabs/logspout)
-[![Docker Hub](https://img.shields.io/badge/docker-ready-blue.svg)](https://registry.hub.docker.com/u/gliderlabs/logspout/)
+[![CircleCI](https://img.shields.io/circleci/project/phedoreanu/logspout/release.svg)](https://circleci.com/gh/phedoreanu/logspout)
+[![Docker Hub](https://img.shields.io/badge/docker-ready-blue.svg)](https://registry.hub.docker.com/u/phedoreanu/logspout/)
 [![IRC Channel](https://img.shields.io/badge/irc-%23gliderlabs-blue.svg)](https://kiwiirc.com/client/irc.freenode.net/#gliderlabs)
 
-> Docker Hub automated builds for `gliderlabs/logspout:latest` and `progrium/logspout:latest` are now pointing to the `release` branch. For `master`, use `gliderlabs/logspout:master`. Individual versions are also available as saved images in [releases](https://github.com/gliderlabs/logspout/releases).
+> Docker Hub automated builds for `gliderlabs/logspout:latest` and `progrium/logspout:latest` are now pointing to the `release` branch. For `master`, use `gliderlabs/logspout:master`. Individual versions are also available as saved images in [releases](https://github.com/phedoreanu/logspout/releases).
 
 Logspout is a log router for Docker containers that runs inside Docker. It attaches to all containers on a host, then routes their logs wherever you want. It also has an extensible module system.
 
@@ -14,7 +14,7 @@ For now it only captures stdout and stderr, but a module to collect container sy
 
 ## Getting logspout
 
-Logspout is a very small Docker container (15.2MB virtual, based on [Alpine](https://github.com/gliderlabs/docker-alpine)). Pull the latest release from the index:
+Logspout is a very small Docker container (15.2MB virtual, based on [Alpine](https://github.com/phedoreanu/docker-alpine)). Pull the latest release from the index:
 
 	$ docker pull gliderlabs/logspout:latest
 
@@ -35,7 +35,7 @@ The simplest way to use logspout is to just take all logs and ship to a remote s
 
 logspout will gather logs from other containers that are started **without the `-t` option** and are configured with a logging driver that works with `docker logs` (`journald` and `json-file`).
 
-To see what data is used for syslog messages, see the [syslog adapter](http://github.com/gliderlabs/logspout/blob/master/adapters) docs.
+To see what data is used for syslog messages, see the [syslog adapter](http://github.com/phedoreanu/logspout/blob/master/adapters) docs.
 
 #### Ignoring specific containers
 
@@ -83,7 +83,7 @@ You can route to multiple destinations by comma-separating the URIs:
 
 #### Inspect log streams using curl
 
-Using the [httpstream module](http://github.com/gliderlabs/logspout/blob/master/httpstream), you can connect with curl to see your local aggregated logs in realtime. You can do this without setting up a route URI.
+Using the [httpstream module](http://github.com/phedoreanu/logspout/blob/master/httpstream), you can connect with curl to see your local aggregated logs in realtime. You can do this without setting up a route URI.
 
 	$ docker run -d --name="logspout" \
 		--volume=/var/run/docker.sock:/var/run/docker.sock \
@@ -93,11 +93,11 @@ Using the [httpstream module](http://github.com/gliderlabs/logspout/blob/master/
 
 You should see a nicely colored stream of all your container logs. You can filter by container name and more. You can also get JSON objects, or you can upgrade to WebSocket and get JSON logs in your browser.
 
-See [httpstream module](http://github.com/gliderlabs/logspout/blob/master/httpstream) for all options.
+See [httpstream module](http://github.com/phedoreanu/logspout/blob/master/httpstream) for all options.
 
 #### Create custom routes via HTTP
 
-Using the [routesapi module](http://github.com/gliderlabs/logspout/blob/master/routesapi) logspout can also expose a `/routes` resource to create and manage routes.
+Using the [routesapi module](http://github.com/phedoreanu/logspout/blob/master/routesapi) logspout can also expose a `/routes` resource to create and manage routes.
 
 	$ curl $(docker port `docker ps -lq` 8000)/routes \
 		-X POST \
@@ -107,7 +107,7 @@ That example creates a new syslog route to [Papertrail](https://papertrailapp.co
 
 Routes are stored on disk, so by default routes are ephemeral. You can mount a volume to `/mnt/routes` to persist them.
 
-See [routesapi module](http://github.com/gliderlabs/logspout/blob/master/routesapi) for all options.
+See [routesapi module](http://github.com/phedoreanu/logspout/blob/master/routesapi) for all options.
 
 ## Modules
 

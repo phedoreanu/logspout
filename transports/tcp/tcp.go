@@ -1,10 +1,11 @@
 package tcp
 
 import (
+	"fmt"
 	"net"
 
-	"github.com/gliderlabs/logspout/adapters/raw"
-	"github.com/gliderlabs/logspout/router"
+	"github.com/phedoreanu/logspout/adapters/raw"
+	"github.com/phedoreanu/logspout/router"
 )
 
 func init() {
@@ -21,12 +22,16 @@ func rawTCPAdapter(route *router.Route) (router.LogAdapter, error) {
 type tcpTransport int
 
 func (_ *tcpTransport) Dial(addr string, options map[string]string) (net.Conn, error) {
+	fmt.Printf("# addr: %s\n", addr)
 	raddr, err := net.ResolveTCPAddr("tcp", addr)
 	if err != nil {
+		fmt.Println(err.Error())
 		return nil, err
 	}
+	fmt.Printf("# raddr: %s\n", raddr.String())
 	conn, err := net.DialTCP("tcp", nil, raddr)
 	if err != nil {
+		fmt.Println(err.Error())
 		return nil, err
 	}
 	return conn, nil

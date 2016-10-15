@@ -6,8 +6,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/gliderlabs/logspout/router"
 	"github.com/gorilla/mux"
+	"github.com/phedoreanu/logspout/router"
 )
 
 func init() {
